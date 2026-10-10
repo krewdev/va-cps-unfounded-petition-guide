@@ -9,8 +9,11 @@ body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-
 .disclaimer { background: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin: 20px 0; font-weight: bold; }
 h1, h2, h3 { color: #1a365d; }
 section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-pre { background: #f4f4f4; padding: 15px; overflow-x: auto; border-radius: 4px; }
+pre { background: #f4f4f4; padding: 15px; overflow-x: auto; border-radius: 4px; position: relative; }
 a { color: #0066cc; }
+.copy-btn { position: absolute; top: 10px; right: 10px; background: #1a365d; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85em; }
+.copy-btn:hover { background: #2c5282; }
+.copy-btn.copied { background: #38a169; }
 </style>
 </head>
 <body>
@@ -18,7 +21,7 @@ a { color: #0066cc; }
 <strong>IMPORTANT DISCLAIMER:</strong> This is general informational content only, based on publicly available Virginia statutes and case law. It is <em>not legal advice</em>, not a substitute for consultation with a licensed Virginia attorney, and not an official government resource. Laws and local court practices can change. Outcomes depend on specific facts. Consult a qualified Virginia family law / child welfare attorney before taking any action.
 </div>
 
-<h1>Virginia Guide: Unfounded CPS Reports &amp; the § 63.2-1514 Petition Process</h1>
+<h1>Virginia Guide: Unfounded CPS Reports & the § 63.2-1514 Petition Process</h1>
 <p>This page consolidates information about discovering the identity of a reporter and related remedies after an unfounded child protective services (CPS) investigation in Virginia, particularly in the context of false allegations during custody or criminal proceedings.</p>
 
 <section>
@@ -76,19 +79,60 @@ a { color: #0066cc; }
 
 <section>
 <h2>Sample Petition Structure (Template Only)</h2>
-<p>This is an outline only. Customize with your facts and have an attorney review.</p>
-<pre>VIRGINIA: IN THE CIRCUIT COURT OF THE [CITY/COUNTY] OF [NAME]
+<p>This is a more complete outline. Replace all bracketed placeholders with your specific facts. Have a Virginia attorney review and customize before filing. It is not a ready-to-file document.</p>
+<div style="position: relative;">
+<pre id="petition-template">VIRGINIA: IN THE CIRCUIT COURT OF THE [CITY/COUNTY] OF [NAME]
 
-[Your Name], Petitioner,
+[YOUR FULL LEGAL NAME],
+     Petitioner,
+
 v.
-[Local Department of Social Services], Respondent.
 
-PETITION FOR RELEASE OF RECORDS PURSUANT TO VA. CODE § 63.2-1514(D)
+[LOCAL DEPARTMENT OF SOCIAL SERVICES],
+     Respondent.
 
-[Include specific factual reasons for believing bad faith or malicious intent.]
+CASE NO. _______________
 
-WHEREFORE, Petitioner requests the Court to review the records in camera, allow presentation of evidence, and, if the statutory criteria are met, provide a copy of the records.
+PETITION FOR RELEASE OF RECORDS PURSUANT TO
+VIRGINIA CODE § 63.2-1514(D)
+(Unfounded Report Alleged to Have Been Made in Bad Faith or with Malicious Intent)
+
+COMES NOW the Petitioner, [YOUR FULL LEGAL NAME], and respectfully petitions this Court as follows:
+
+1. Petitioner is an adult and is the subject of an unfounded report or complaint of child abuse or neglect made pursuant to Chapter 15 of Title 63.2 of the Code of Virginia.
+
+2. On or about [DATE OF REPORT], a report or complaint was made to the [LOCAL] Department of Social Services alleging [BRIEF DESCRIPTION OF ALLEGATIONS].
+
+3. After investigation [or family assessment], the local department determined the report/complaint to be unfounded [or completed a family assessment]. Petitioner received written notice of this disposition on or about [DATE]. A copy of the disposition letter is attached as Exhibit A.
+
+4. Petitioner believes the report or complaint was made in bad faith or with malicious intent for the following specific reasons:
+   a. [SPECIFIC FACTUAL REASON 1 — e.g., the report was made on [DATE], shortly before a scheduled custody hearing in Case No. [NUMBER] on [DATE];]
+   b. [SPECIFIC FACTUAL REASON 2 — e.g., the suspected reporter has a documented history of prior unfounded allegations or interference with Petitioner’s relationship with the child(ren);]
+   c. [SPECIFIC FACTUAL REASON 3 — e.g., the allegations contained details known only to [SPECIFIC PERSON];]
+   d. [ADDITIONAL SPECIFIC FACTUAL REASONS AS NEEDED.]
+
+5. Petitioner has no history of violence or threats toward the complainant and states that disclosure of the complainant’s identity would not be likely to endanger the complainant’s life or safety.
+
+6. Pursuant to Virginia Code § 63.2-1514(D), Petitioner requests that this Court:
+   a. Direct the local Department of Social Services to provide its records of the investigation or family assessment to the Court for in camera review;
+   b. Allow Petitioner to present evidence in support of this petition;
+   c. Determine that there is a reasonable question of fact as to whether the report or complaint was made in bad faith or with malicious intent and that disclosure of the complainant’s identity would not be likely to endanger the life or safety of the complainant; and
+   d. Provide to Petitioner a copy of the records of the investigation or family assessment, including information identifying the complainant.
+
+WHEREFORE, Petitioner respectfully requests that this Court grant the relief requested herein and such other and further relief as the Court deems just and proper.
+
+Respectfully submitted,
+
+________________________________
+[YOUR FULL LEGAL NAME]
+[YOUR ADDRESS]
+[YOUR PHONE NUMBER]
+[YOUR EMAIL]
+[DATE]
 </pre>
+<button class="copy-btn" onclick="copyTemplate()">Copy Template</button>
+</div>
+<p><em>Note: Also file the required Civil Cover Sheet (Form CC-1416). Confirm local formatting, verification, and service requirements with the Circuit Court Clerk.</em></p>
 </section>
 
 <section>
@@ -104,5 +148,24 @@ WHEREFORE, Petitioner requests the Court to review the records in camera, allow 
 <div class="disclaimer">
 Again: This is not legal advice. Seek professional counsel for your specific situation.
 </div>
+
+<script>
+function copyTemplate() {
+  const pre = document.getElementById('petition-template');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(err => {
+    alert('Failed to copy. Please select and copy manually.');
+  });
+}
+</script>
 </body>
 </html>
